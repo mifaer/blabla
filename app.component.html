@@ -1,0 +1,36 @@
+<div class="background" [ngStyle]="{'background': numImg}">
+  <div class="block">
+    <div class="hide-panel" [hidden]="!openedWeather">
+      <div class="weather"></div>
+    </div>
+    <div class="hide-panel" [hidden]="!openedMusic">
+      <my-music class="music"></my-music>
+    </div>
+  </div>
+  <div class="diary-panel">
+    <div class="top-panel">
+      <button (click)="openedWeather = !openedWeather">Weather</button>
+      <button (click)="openedMusic = !openedMusic">Music</button>
+    </div>
+    <my-time></my-time>
+    <span class="focus-task">{{focusTask}}</span>
+    <div class="task">
+      <section>
+        <input class="new-task" [(ngModel)]="taskValue" (keypress)="addItemKey($event)"/>
+        <button (click)="addItem()" class="submit">+</button>
+      </section>
+    </div>
+    <div class="bottom-panel">
+      <button (click)="openedSetting = !openedSetting">Setting</button>
+      <button (click)="openedTodo = !openedTodo">Todo</button>
+    </div>
+  </div>
+  <div class="block">
+    <div class="hide-panel" [hidden]="!openedSetting">
+      <div class="setting"></div>
+    </div>
+    <div class="hide-panel" [hidden]="!openedTodo">
+      <my-todo class="todo"  [itemDetection]="itemDetection" (chooseFocusTask)="chooseFocus($event)"></my-todo>
+    </div>
+  </div>
+</div>
